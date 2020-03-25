@@ -24,6 +24,11 @@
 
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
+# SUSE doesn't have python3_pkgversion macro
+%if 0%{?suse_version} == 1500 && 0%{?is_opensuse}
+%global python3_pkgversion 3
+%endif
+
 Name:		qubes-db
 Version:	@VERSION@
 Release:	1%{?dist}
