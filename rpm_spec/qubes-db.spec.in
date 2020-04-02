@@ -29,52 +29,52 @@
 %global python3_pkgversion 3
 %endif
 
-Name:		qubes-db
-Version:	@VERSION@
-Release:	1%{?dist}
-Summary:	QubesDB tools
+Name:           qubes-db
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        QubesDB tools
+Group:          Qubes
+License:        GPL
+URL:            http://www.qubes-os.org/
 
-Group:		Qubes
-License:	GPL
-URL:		http://www.qubes-os.org/
-
-BuildRequires:	gcc
-BuildRequires:	qubes-libvchan-@BACKEND_VMM@-devel
-BuildRequires:	systemd-devel
-BuildRequires:	python2-devel
+BuildRequires:  gcc
+BuildRequires:  qubes-libvchan-@BACKEND_VMM@-devel
+BuildRequires:  systemd-devel
+BuildRequires:  python2-devel
 BuildRequires:  python%{python3_pkgversion}-devel
-Requires:	qubes-libvchan-@BACKEND_VMM@
-Source0:    %{name}-%{version}.tar.gz
+
+Requires:       qubes-libvchan-@BACKEND_VMM@
+Source0:        %{name}-%{version}.tar.gz
 
 %description
 QubesDB management tools and daemon.
 
 %package libs
-Summary:	QubesDB libs
-Group:		Qubes
+Summary:        QubesDB libs
+Group:          Qubes
 
 %description libs
 QubesDB client library.
 
 %package devel
-Summary:	QubesDB client header files
-Group:		Qubes
-Requires:	qubes-db-libs
+Summary:        QubesDB client header files
+Group:          Qubes
+Requires:       qubes-db-libs
 
 %description devel
 Header files for QubesDB client library and daemon protocol.
 
 %package -n python2-qubesdb
-Summary:    Python2 bindings for QubesDB
-Requires:   qubes-db-libs
+Summary:        Python2 bindings for QubesDB
+Requires:       qubes-db-libs
 %{?python_provide:%python_provide python2-qubesdb}
 
 %description -n python2-qubesdb
 Python bindings for QubesDB
 
 %package -n python%{python3_pkgversion}-qubesdb
-Summary:    Python%{python3_pkgversion} bindings for QubesDB
-Requires:   qubes-db-libs
+Summary:        Python%{python3_pkgversion} bindings for QubesDB
+Requires:       qubes-db-libs
 %{?python_provide:%python_provide python%{python3_pkgversion}-qubesdb}
 
 %description -n python%{python3_pkgversion}-qubesdb
@@ -90,17 +90,17 @@ make %{?_smp_mflags} PYTHON=%{__python3} -C python all
 
 %install
 make install \
-         PYTHON=%{__python2} \
-         DESTDIR=%{buildroot} \
-         LIBDIR=%{_libdir} \
-         BINDIR=%{_bindir} \
-         SBINDIR=%{_sbindir}
+    PYTHON=%{__python2} \
+    DESTDIR=%{buildroot} \
+    LIBDIR=%{_libdir} \
+    BINDIR=%{_bindir} \
+    SBINDIR=%{_sbindir}
 make -C python install \
-         PYTHON=%{__python3} \
-         DESTDIR=%{buildroot} \
-         LIBDIR=%{_libdir} \
-         BINDIR=%{_bindir} \
-         SBINDIR=%{_sbindir}
+    PYTHON=%{__python3} \
+    DESTDIR=%{buildroot} \
+    LIBDIR=%{_libdir} \
+    BINDIR=%{_bindir} \
+    SBINDIR=%{_sbindir}
 
 %files
 %doc

@@ -22,24 +22,25 @@
 #
 #
 
-# Package contains /usr/lib, but not binary files, which confuses find-debuginfo.sh script.
+# Package contains /usr/lib, but not binary files,
+# which confuses find-debuginfo.sh script.
 %global debug_package %{nil}
 
-Name:		qubes-db-vm
-Version:	@VERSION@
-Release:	1%{?dist}
-Summary:	QubesDB VM service
+Name:           qubes-db-vm
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        QubesDB VM service
 
-Group:		Qubes
-License:	GPL
-URL:		http://www.qubes-os.org/
+Group:          Qubes
+License:        GPL
+URL:            http://www.qubes-os.org/
 
-Requires:	qubes-db
+Requires:       qubes-db
 Requires(post): /bin/systemctl
 %{?systemd_requires}
-BuildRequires: systemd
+BuildRequires:  systemd
 
-Source0: qubes-db-%{version}.tar.gz
+Source0:        qubes-db-%{version}.tar.gz
 
 %description
 QubesDB daemon service.
